@@ -1,4 +1,5 @@
 module FirstScript where
+import Data.Char
 
 size :: Integer
 size = 12+13
@@ -42,3 +43,41 @@ phi = (1 + sqrt 5) / 2
 -- function returns the fractional (decimal) part of a float
 fractionOfFloat :: Float -> Float
 fractionOfFloat x = x - (fromIntegral(floor x))
+
+-- function returns true if one number is the middle of three
+between :: Int -> Int -> Int -> Bool
+between x y z = (y > x && y < z) || (y < x && y > z)
+
+-- function returns the middle number of three
+middleNumber :: Int -> Int -> Int -> Int
+middleNumber x y z
+    | between y x z = x
+    | between x y z = y
+    | otherwise     = z
+
+-- function returns the middle number of three (local definition)
+middleNumberLocal :: Int -> Int -> Int -> Int
+middleNumberLocal x y z
+    | xx = x
+    | yy = y
+    | otherwise = z
+    where
+        xx = between y x z
+        yy = between x y z
+        
+-- function converts a char to digit if it is a digit
+charToDigit :: Char -> Int
+charToDigit x = if (isDigit(x)) then (ord x) - 48 else 0
+
+-- function returns true if a year is a leap year
+isLeapYear :: Int -> Bool
+isLeapYear x
+    | x `mod` 400 == 0 = True
+    | x `mod` 4 == 0 && x `mod` 100 /= 0 = True
+    | otherwise = False
+
+-- returns the number of days in a year
+yearDays :: Int -> Int
+yearDays x
+    | isLeapYear x = 366
+    | otherwise    = 365
