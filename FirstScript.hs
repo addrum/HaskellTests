@@ -58,13 +58,12 @@ middleNumber x y z
 -- function returns the middle number of three (local definition)
 middleNumberLocal :: Int -> Int -> Int -> Int
 middleNumberLocal x y z
-    | xx = x
-    | yy = y
+    | between y x z = x
+    | between x y z = y
     | otherwise = z
     where
-        xx = between y x z
-        yy = between x y z
-        
+        between x y z = (y > x && y < z) || (y < x && y > z)
+
 -- function converts a char to digit if it is a digit
 charToDigit :: Char -> Int
 charToDigit x = if (isDigit(x)) then (ord x) - 48 else 0
