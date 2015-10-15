@@ -112,7 +112,7 @@ isPalindromeIgnore x = isPalindrome (capitaliseLetters x)
 
 -- function returns string of words backwards
 backwards :: String -> String
-backwards x = reverse x
+backwards x = unwords (reverse (words x))
 
 -- function reverses each word and retains order
 backwardsInOrder :: String -> String
