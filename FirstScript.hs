@@ -1,5 +1,6 @@
 module FirstScript where
 import Data.Char
+import Data.List
 
 size :: Integer
 size = 12+13
@@ -80,3 +81,51 @@ yearDays :: Int -> Int
 yearDays x
     | isLeapYear x = 366
     | otherwise    = 365
+
+-- function triples each int in a list
+tripleAll :: [Int] -> [Int]
+tripleAll ns = [3*n | n <- ns]
+
+-- function squares a list of integers
+squareAll :: [Int] -> [Int]
+squareAll ns = [n^2 | n <- ns]
+
+-- function capitalise letters
+capitalise :: String -> String
+capitalise l = [toUpper n | n <- l]
+
+-- function capitalise letters and discards non letters
+capitaliseLetters :: String -> String
+capitaliseLetters xs = [toUpper x | x <- xs, isAlpha x] 
+
+-- function returns list of numbers that evenly divide the input
+divisors :: Int -> [Int]
+divisors x = [s | s <- [1..x], x `mod` s == 0]
+
+-- function returns true if param is palindrome
+isPalindrome :: String -> Bool
+isPalindrome x = x == reverse x
+
+-- function returns true if param is palindrome ignoring case and non-letters
+isPalindromeIgnore :: String -> Bool
+isPalindromeIgnore x = isPalindrome (capitaliseLetters x)
+
+-- function returns string of words backwards
+backwards :: String -> String
+backwards x = reverse x
+
+-- function reverses each word and retains order
+backwardsInOrder :: String -> String
+backwardsInOrder xs = unwords (reverse (words (reverse xs)))
+
+-- function returns string with title padded with .
+contentsLine :: String -> Int -> String
+contentsLine x y =
+    x ++ replicate ((40 - (length x + length (show y)))) '.' ++ show y
+
+entries :: [(String, Int)] 
+entries = [("Hello", 1), ("Second", 2), ("Third", 3)]
+
+-- function formats table of contents as single string
+toc :: [(String, Int)] -> String
+toc xs = unlines [contentsLine x y | (x, y) <- xs]
