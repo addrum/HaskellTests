@@ -129,3 +129,25 @@ entries = [("Hello", 1), ("Second", 2), ("Third", 3)]
 -- function formats table of contents as single string
 toc :: [(String, Int)] -> String
 toc xs = unlines [contentsLine x y | (x, y) <- xs]
+
+-- function tests if a list is non empty
+nonEmpty :: [a] -> Bool
+nonEmpty [] = False
+nonEmpty (x:xs) = True
+
+-- function returns tail of non empty list
+safeTail :: [a] -> [a]
+safeTail [] = []
+safeTail (x:xs) = xs
+
+-- function redifnes sum
+sum2 :: [Int] -> Int
+sum2 [] = 0
+sum2 (x:xs) = x + (sum2 xs)
+
+-- functionr returns true if any inputs are true
+or2 :: [Bool] -> Bool
+or2 [] = False
+or2 (x:xs) = x || or2 xs 
+
+
