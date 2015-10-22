@@ -143,11 +143,26 @@ safeTail (x:xs) = xs
 -- function redifnes sum
 sum2 :: [Int] -> Int
 sum2 [] = 0
-sum2 (x:xs) = x + (sum2 xs)
+sum2 (x:xs) = x + sum2 xs
 
 -- functionr returns true if any inputs are true
 or2 :: [Bool] -> Bool
 or2 [] = False
 or2 (x:xs) = x || or2 xs 
+
+-- function is a rewritten zip3
+zip32 :: [a] -> [b] -> [c] -> [(a,b,c)]
+zip32 (x:xs) (y:ys) (z:zs) = (x,y,z): zip32 xs ys zs
+zip32 _ _ _ = []
+
+-- function finds the largest element in a list of Ints
+maximum2 :: Int -> [Int] -> Int
+maximum2 y (x:xs) = maximum2 (max x y) xs
+maximum2 y _ = y
+
+-- function returns largest value in non empty list
+myMaximum :: [Int] -> Int
+myMaximum (x:xs) = maximum2 x xs
+myMaximum _ = 0
 
 
