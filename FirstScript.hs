@@ -165,4 +165,57 @@ myMaximum :: [Int] -> Int
 myMaximum (x:xs) = maximum2 x xs
 myMaximum _ = 0
 
+-- function is a non recursive version of elem
+elem2 :: Eq a => a -> [a] -> Bool
+elem2 x [] = False
+elem2 x (y:ys) = x == y || or2 [n == x | n <- ys]
+
+-- function retuns number of times a Char occurs in String
+count :: Char -> [Char] -> Int
+count x [] = 0
+count x (y:ys) = (if x == y then 1 else 0) + count x ys 
+
+-- function rewrites take
+drop2 :: Int -> [a] -> [a]
+drop2 n [] = []
+drop2 n (x:xs)
+    | n > 0 = drop2 (n - 1) xs
+    | otherwise = x:xs
+
+-- function returns substring of letters at the front
+takeWord :: [Char] -> [Char]
+takeWord [] = []
+takeWord (c:cs)
+    | isAlpha c = c:takeWord cs
+    | otherwise = []
+
+-- function returns substring of letters at the back
+dropWord :: [Char] -> [Char]
+dropWord [] = []
+dropWord (c:cs)
+    | isAlpha c = dropWord cs
+    | otherwise = c:cs
+
+-- function returns range
+range :: Int -> Int -> [Int]
+range x y
+    | x > y = []
+    | x == y = [x]
+    | otherwise = x:(range (x+1) y)
+
+--function orders two lists
+merge :: Ord a => [a] -> [a] -> [a]
+merge (y:ys) [] = y:ys
+merge [] (x:xs) = x:xs
+merge (x:xs) (y:ys) = if (x<y) then x:(merge xs (y:ys)) else y:(merge (x:xs) ys)  
+merge _ _ = []
+
+-- function returns odd indexed elements as a list
+
+
+
+
+
+
+
 
