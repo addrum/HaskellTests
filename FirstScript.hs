@@ -211,11 +211,21 @@ merge (x:xs) (y:ys) = if (x<y) then x:(merge xs (y:ys)) else y:(merge (x:xs) ys)
 merge _ _ = []
 
 -- function returns odd indexed elements as a list
+odds :: [a] -> [a]
+odds [] = []
+odds (x:xs)
+    | ((length xs) `mod` 2) == 0 = x:(odds xs)
+    | otherwise = odds xs
 
+-- function returns even indexed ekements as a list
+evens :: [a] -> [a]
+evens [] = []
+evens (x:xs)
+    | ((length xs) `mod` 2) /= 0 = x:(evens xs)
+    | otherwise = evens xs 
 
-
-
-
-
+mergeSort :: Ord a => [a] -> [a]
+mergeSort [] = []
+mergeSort x = merge (sort (odds x)) (sort (evens x))
 
 
