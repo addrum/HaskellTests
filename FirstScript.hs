@@ -213,19 +213,27 @@ merge _ _ = []
 -- function returns odd indexed elements as a list
 odds :: [a] -> [a]
 odds [] = []
-odds (x:xs)
-    | ((length xs) `mod` 2) == 0 = x:(odds xs)
-    | otherwise = odds xs
+odds (x:xs) = x:(evens xs)
 
 -- function returns even indexed ekements as a list
 evens :: [a] -> [a]
 evens [] = []
-evens (x:xs)
-    | ((length xs) `mod` 2) /= 0 = x:(evens xs)
-    | otherwise = evens xs 
+evens (x:xs) = odds xs
 
+-- function sorts an unordered list
 mergeSort :: Ord a => [a] -> [a]
 mergeSort [] = []
-mergeSort x = merge (sort (odds x)) (sort (evens x))
+mergeSort [x] = [x]
+mergeSort x = merge (mergeSort (odds x)) (mergeSort (evens x))
 
+-- function returns list copitalised
+capitalise2 :: String -> String
+capitalise2 xs = map toUpper xs
 
+-- function selects capital letters from the list
+capitals :: String -> String
+capitals xs = filter isUpper xs
+
+-- function selects capitals and discards non letters
+capitalise3 :: String -> String
+capitalise3 xs = filter isAlpha (capitalise2 xs) 
