@@ -237,3 +237,42 @@ capitals xs = filter isUpper xs
 -- function selects capitals and discards non letters
 capitalise3 :: String -> String
 capitalise3 xs = filter isAlpha (capitalise2 xs) 
+
+-- function is a non recursive reverse
+reverse2 :: [a] -> [a]
+reverse2 xs = foldr f [] xs
+    where f x y = y ++ [x]
+
+-- function redefines length using foldr
+length2 :: [a] -> Int
+length2 = foldr addOne 0
+    where addOne x n = 1 + n
+
+-- function removes first non letter
+filterFirstNonLetter :: [Char] -> [Char]
+filterFirstNonLetter [] = []
+filterFirstNonLetter (x:xs)
+    | isAlpha x = x:filterFirstNonLetter xs
+    | otherwise = xs
+
+-- functions generalises above function
+filterFirst :: (a -> Bool) -> [a] -> [a]
+filterFirst p [] = []
+filterFirst p (x:xs)
+    | p x = x:filterFirst p xs
+    | otherwise = xs
+
+-- function returns the squares from 1 to 20
+squares2 :: [Int] -> [Int]
+squares2 = map (^2)
+
+-- function returns square numbers less than 500
+squareNumbers :: [Int] -> [Int]
+squareNumbers xs = takeWhile (< 500) (map (^2) [1..]) 
+
+count2 :: Eq a => a -> [a] -> Int
+count2 x ys = length (filter (== x) ys) 
+
+-- function sums the squares
+sumSquares :: [Int] -> Int
+sumSquares = sum . map (^2)
