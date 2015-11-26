@@ -276,3 +276,33 @@ count2 x ys = length (filter (== x) ys)
 -- function sums the squares
 sumSquares :: [Int] -> Int
 sumSquares = sum . map (^2)
+
+data Colour = Red | Green | Blue
+    | Yellow | Cyan | Magenta
+    | Black | White
+    deriving Show
+
+inverseColour :: Colour -> Colour
+inverseColour Red = Cyan
+inverseColour Green = Magenta
+inverseColour Blue = Yellow
+inverseColour Yellow = Blue
+inverseColour Cyan = Red
+inverseColour Magenta = Green
+inverseColour Black = White
+inverseColour White = Black
+
+data Month = Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec
+
+data Shape
+    = Circle Double
+    | Rectangle Double Double
+    deriving Show
+
+rotateRight :: Shape -> Shape
+rotateRight (Circle r) = Circle r
+rotateRight (Rectangle w h) = Rectangle h w
+
+scale :: Double -> Shape -> Shape
+scale s (Circle r) = Circle (r * s)
+scale s (Rectangle w h) = Rectangle (w * s) (h * s)
